@@ -53,8 +53,8 @@ pipeline {
                 sh 'git add Kubernetes/application.yaml'
                 sh 'git commit -m "Update image tag to build number ${BUILD_NUMBER}"'
                 sh 'git push origin HEAD:master'
-    }
-}
+            }
+        }  
 
         stage('Argo CD Sync') {
             steps {
