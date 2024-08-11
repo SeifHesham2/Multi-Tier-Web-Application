@@ -53,7 +53,7 @@ pipeline {
                 sh 'git config --global user.name "seifhesham2"'
                 sh 'git add Kubernetes/application.yaml'
                 sh 'git commit -m "Update image tag to build number ${BUILD_NUMBER}"'
-                sh 'git push origin HEAD:master'
+                sh 'git push -u origin master '
             }
         }  
 
