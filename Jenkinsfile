@@ -16,8 +16,8 @@ pipeline {
                 echo 'Checking out...'
                 checkout scm
             }
-    /*     }
-        stage('Build') {
+        }
+        /* stage('Build') {
             steps {
                 echo 'Building...'
                 sh 'npm install'
