@@ -48,8 +48,8 @@ pipeline {
                 sh """
                 sed -i 's|image: seifseddik120/my-app:.*|image: seifseddik120/my-app:${env.BUILD_NUMBER}|g' Kubernetes/application.yaml
                 """
-                sh "cd Kubernetes"
-                sh 'git add kubernetes/application.yaml'
+
+                sh 'git add Kubernetes/application.yaml'
                 sh 'git commit -m "Update image tag to build number ${env.BUILD_NUMBER}"'
                 sh 'git push origin HEAD:master'
             }
