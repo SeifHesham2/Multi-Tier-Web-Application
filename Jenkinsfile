@@ -26,17 +26,22 @@ pipeline{
         }   
         stage('Build Docker Image'){
             steps{
+                script{
                 echo 'Building Docker Image...'
                 def imageTag = "${env.BUILD_NUMBER}"
                 dockerImage = docker.build("seifseddik120/my-app:${imageTag}")
+                }
             }
         }
         stage('Push Docker Image'){
             steps{
-                echo 'Pushing Docker Image...'
-                docker.withRegistry(' ', 'DockerHub') {
+                script{
+                    echo 'Pushing Docker Image...'
+                    docker.withRegistry(' ', 'DockerHub') {
                     dockerImage.push()
                 }
+                }
+                
             }
         }
     }
