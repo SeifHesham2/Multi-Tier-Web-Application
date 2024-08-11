@@ -17,7 +17,7 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Build') {
+      /*   stage('Build') {
             steps {
                 echo 'Building...'
                 sh 'npm install'
@@ -41,7 +41,7 @@ pipeline {
                     }
                 }
             }
-        }
+        } */
         stage('Update Kubernetes Manifests') {
             steps {
                 echo 'Updating Kubernetes manifests...'
@@ -50,7 +50,6 @@ pipeline {
                 sed -i "s|image: seifseddik120/my-app:.*|image: seifseddik120/my-app:${BUILD_NUMBER}|g" Kubernetes/application.yaml
                 '''
                 sh 'git config --global user.email "seifhesham2030@gmail.com"'
-                sh 'git config --global user.name "SeifHesham2"'
                 sh 'git add Kubernetes/application.yaml'
                 sh 'git commit -m "Update image tag to build number ${BUILD_NUMBER}"'
                 sh 'git push origin HEAD:master'
