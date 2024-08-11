@@ -46,7 +46,7 @@ pipeline {
             steps {
                 echo 'Updating Kubernetes manifests...'
                 sh """
-                sed -i 's|image: seifseddik120/my-app:.*|image: seifseddik120/my-app:${env.BUILD_NUMBER}|g' kubernetes/application.yaml
+                sed -i 's|image: seifseddik120/my-app:.*|image: seifseddik120/my-app:${env.BUILD_NUMBER}|g' Kubernetes/application.yaml
                 """
                 sh 'git add kubernetes/application.yaml'
                 sh 'git commit -m "Update image tag to build number ${env.BUILD_NUMBER}"'
