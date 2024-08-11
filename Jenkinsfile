@@ -42,5 +42,22 @@ pipeline {
                 }
             }
         }
+        stage('Update Kubernetes Manifests') {
+            steps {
+                echo 'Updating Kubernetes manifests...'
+                sh """
+                sed -i 's|image: seifseddik120/my-app:.*|image: seifseddik120/my-app:${env.BUILD_NUMBER}|g' kubernetes/application.yaml
+                """
+                sh 'git add kubernetes/application.yaml'
+                sh 'git commit -m "Update image tag to build number ${env.BUILD_NUMBER}"'
+                sh 'git push origin HEAD:master'
+            }
+        }
+        stage('Argo CD Sync') {
+            steps {
+                echo 'Triggering Argo CD sync...'
+                sh 'argocd app sync my-app' 
+            }
+        }
     }
 }
