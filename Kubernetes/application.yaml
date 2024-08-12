@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: my-app
-          image: seifseddik120/my-app:52
+          image: seifseddik120/my-app:54
           ports:
             - containerPort: 3000
       imagePullSecrets:
