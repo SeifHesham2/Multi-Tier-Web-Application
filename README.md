@@ -22,7 +22,7 @@ This repository contains an automated CI/CD pipeline for a Multi-Tier Web Applic
 ### OWASP Dependency Check:
 - The pipeline integrates **OWASP Dependency Check** to scan the application’s dependencies for known vulnerabilities.
 
-  ![Workflow](Photos/Screenshot 2024-08-13 041156.png)
+  ![Workflow]("Photos/Screenshot 2024-08-13 041156.png")
 
 ### SonarQube Code Analysis:
 - The pipeline integrates **SonarQube** for static code analysis, ensuring the code meets quality standards before deployment.
