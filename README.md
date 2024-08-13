@@ -39,7 +39,7 @@ This repository contains an automated CI/CD pipeline for a Multi-Tier Web Applic
 - **ArgoCD** is used for continuous deployment and synchronization of the Kubernetes manifests with the live cluster.
 - ArgoCD automatically syncs the Kubernetes state in Minikube with the latest changes from the GitHub repository.
   
-![Workflow](https://github.com/user-attachments/assets/6b3e9b6b-dd67-42c7-a7c5-311f9e4e774a)
+![Third Screenshot](Photos/Screenshot%202024-08-13%20041707.png)
 
 ### Environment Setup and Verification:
 - The pipeline starts with verifying the environment setup, including Docker and Minikube, to ensure that all necessary tools are in place.
