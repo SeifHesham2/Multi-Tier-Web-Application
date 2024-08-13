@@ -71,12 +71,11 @@ This repository contains an automated CI/CD pipeline for a Multi-Tier Web Applic
 - **Trivy:** Scans Docker images for security vulnerabilities.
 - **OWASP Dependency Check:** Scans application dependencies for known vulnerabilities.
 
-## How to Run Locally:
+## How to Run Locally Using MiniKube And ArgoCD:
 
-1. **Prerequisites:** Ensure that Node.js, MongoDB, Docker, Minikube, and ArgoCD are installed on your system.
+1. **Prerequisites:*ArgoCD and minikube installed in your computer* 
 2. **Clone the Repository:** `git clone https://github.com/yourusername/your-repo.git`
-3. **Install Dependencies:** Navigate to the project directory and run `npm install`.
-4. **Start the Application:** Run `node app.js`.
+3. **Start the Application:** Run `ArgoCD.yaml File`.
 5. **Access the Application:** Open your browser and go to `http://localhost:3000`.
 
 ## How to Deploy Using Jenkins:
