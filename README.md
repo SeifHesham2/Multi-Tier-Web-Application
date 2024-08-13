@@ -1,70 +1,92 @@
-## demo app - developing with Docker
+# Multi-Tier Web Application CI/CD Pipeline with Jenkins, Docker, Kubernetes, and ArgoCD
 
-This demo app shows a simple user profile app set up using 
-- index.html with pure js and css styles
-- nodejs backend with express module
-- mongodb for data storage
+This repository contains an automated CI/CD pipeline for a Multi-Tier Web Application application. The pipeline leverages Jenkins, Docker, Kubernetes, and ArgoCD to automate the build, test, security scan, and deployment process from code commit to production.
 
-All components are docker-based
 
-### With Docker
+## Key Features:
 
-#### To start the application
+### Jenkins Pipeline Automation:
+- **SCM Polling:** Jenkins automatically polls the source code repository on GitHub for changes. This ensures that the pipeline runs automatically on every code commit.
+- The pipeline includes stages for checking out the code, building the application, performing static code analysis, security scans, and deploying to a Kubernetes cluster managed by Minikube.
 
-Step 1: Create docker network
+### Docker Integration:
+- The application is packaged as a Docker image, ensuring consistency across development, testing, and production environments.
+- The pipeline builds the Docker image, tags it with the build number, and pushes it to **Docker Hub**.
 
-    docker network create mongo-network 
+### Trivy Docker Image Scanning:
+- **Trivy** is used to scan the Docker image for vulnerabilities, focusing on HIGH and CRITICAL severity issues before the image is pushed to Docker Hub.
 
-Step 2: start mongodb 
+### OWASP Dependency Check:
+- The pipeline integrates **OWASP Dependency Check** to scan the application’s dependencies for known vulnerabilities.
 
-    docker run -d -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=password --name mongodb --net mongo-network mongo    
+### SonarQube Code Analysis:
+- The pipeline integrates **SonarQube** for static code analysis, ensuring the code meets quality standards before deployment.
+- SonarQube identifies potential bugs, code smells, and security vulnerabilities, with detailed reports available directly within Jenkins.
 
-Step 3: start mongo-express
-    
-    docker run -d -p 8081:8081 -e ME_CONFIG_MONGODB_ADMINUSERNAME=admin -e ME_CONFIG_MONGODB_ADMINPASSWORD=password --net mongo-network --name mongo-express -e ME_CONFIG_MONGODB_SERVER=mongodb mongo-express   
+### Kubernetes Deployment:
+- The Docker image is deployed to a **Kubernetes cluster** using **Minikube**.
+- The pipeline includes steps to update Kubernetes manifests with the new Docker image tag, apply the configurations, and verify the deployment.
 
-_NOTE: creating docker-network in optional. You can start both containers in a default network. In this case, just emit `--net` flag in `docker run` command_
+### ArgoCD Continuous Deployment:
+- **ArgoCD** is used for continuous deployment and synchronization of the Kubernetes manifests with the live cluster.
+- ArgoCD automatically syncs the Kubernetes state in Minikube with the latest changes from the GitHub repository.
 
-Step 4: open mongo-express from browser
+### Environment Setup and Verification:
+- The pipeline starts with verifying the environment setup, including Docker and Minikube, to ensure that all necessary tools are in place.
+- Minikube is automatically started if it's not already running, and the pipeline proceeds with the deployment.
 
-    http://localhost:8081
+## How It Works:
 
-Step 5: create `user-account` _db_ and `users` _collection_ in mongo-express
+1. **SCM Polling:** Jenkins polls the source code repository for changes.
+2. **Environment Setup:** Jenkins verifies the installation of required tools like Docker, Trivy, and Minikube.
+3. **Build:** The Node.js application is built using `npm install`.
+4. **SonarQube Analysis:** The source code is analyzed for quality and security using SonarQube.
+5. **OWASP Dependency Check:** The application dependencies are scanned for known vulnerabilities.
+6. **Docker Image Creation:** The application is packaged into a Docker image, tagged with the build number.
+7. **Trivy Docker Image Scanning:** The Docker image is scanned for vulnerabilities using Trivy.
+8. **Push Docker Image:** The Docker image is pushed to Docker Hub.
+9. **Kubernetes Manifests Update:** The Kubernetes manifests are updated with the new Docker image tag.
+10. **Kubernetes Deployment:** The updated manifests are applied to the Minikube cluster.
+11. **ArgoCD Synchronization:** ArgoCD syncs the Kubernetes cluster with the latest manifest changes.
+12. **Deployment Verification:** The pipeline verifies that the application is successfully deployed and running.
 
-Step 6: Start your nodejs application locally - go to `app` directory of project 
+## Technologies Used:
 
-    npm install 
-    node server.js
-    
-Step 7: Access you nodejs application UI from browser
+- **Jenkins:** Automates the CI/CD pipeline.
+- **Docker:** Containerizes the application for consistency across environments.
+- **Kubernetes:** Manages the deployment of containerized applications.
+- **ArgoCD:** Synchronizes the Kubernetes manifests with the live cluster.
+- **Node.js:** Backend framework used to build the application.
+- **SonarQube:** Ensures code quality through static code analysis.
+- **Trivy:** Scans Docker images for security vulnerabilities.
+- **OWASP Dependency Check:** Scans application dependencies for known vulnerabilities.
 
-    http://localhost:3000
+## How to Run Locally:
 
-### With Docker Compose
+1. **Prerequisites:** Ensure that Node.js, MongoDB, Docker, Minikube, and ArgoCD are installed on your system.
+2. **Clone the Repository:** `git clone https://github.com/yourusername/your-repo.git`
+3. **Install Dependencies:** Navigate to the project directory and run `npm install`.
+4. **Start the Application:** Run `node app.js`.
+5. **Access the Application:** Open your browser and go to `http://localhost:3000`.
 
-#### To start the application
+## How to Deploy Using Jenkins:
 
-Step 1: start mongodb and mongo-express
+1. **Set Up Jenkins:** Ensure Jenkins is configured with the necessary plugins and tools.
+2. **Create a Jenkins Job:** Use the provided `Jenkinsfile` to set up the pipeline.
+3. **Run the Pipeline:** Start the pipeline to automate the build, test, and deployment process.
 
-    docker-compose -f docker-compose.yaml up
-    
-_You can access the mongo-express under localhost:8080 from your browser_
-    
-Step 2: in mongo-express UI - create a new database "my-db"
+## Environment Variables:
 
-Step 3: in mongo-express UI - create a new collection "users" in the database "my-db"       
-    
-Step 4: start node server 
+- **SONARQUBE_TOKEN:** Token for authenticating with SonarQube.
+- **NVD_KEY:** API key for OWASP Dependency Check.
+- **DOCKERHUB_USERNAME:** DockerHub username for pushing images.
+- **DOCKERHUB_PASSWORD:** DockerHub password for pushing images.
+- **GIT_USERNAME:** GitHub username for pushing updates to manifests.
+- **GIT_TOKEN:** GitHub token for authentication.
+- **ARGOCD_URL:** URL for ArgoCD server.
+- **ARGOCD_USERNAME:** ArgoCD username for authentication.
+- **ARGOCD_PASSWORD:** ArgoCD password for authentication.
 
-    npm install
-    node server.js
-    
-Step 5: access the nodejs application from browser 
+## Contributing:
 
-    http://localhost:3000
-
-#### To build a docker image from the application
-
-    docker build -t my-app:1.0 .       
-    
-The dot "." at the end of the command denotes location of the Dockerfile.
+Feel free to submit issues or pull requests if you find bugs or want to improve the project. Contributions are always welcome!
