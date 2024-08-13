@@ -10,7 +10,7 @@ This repository contains an automated CI/CD pipeline for a Multi-Tier Web Applic
 - **SCM Polling:** Jenkins automatically polls the source code repository on GitHub for changes. This ensures that the pipeline runs automatically on every code commit.
 - The pipeline includes stages for checking out the code, building the application, performing static code analysis, security scans, and deploying to a Kubernetes cluster managed by Minikube.
   
-![Workflow](https://github.com/user-attachments/assets/6b3e9b6b-dd67-42c7-a7c5-311f9e4e774a)
+![Fourth Screenshot](Photos/Screenshot%202024-08-13%20041121.png)
 
 ### Docker Integration:
 - The application is packaged as a Docker image, ensuring consistency across development, testing, and production environments.
