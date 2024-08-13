@@ -2,12 +2,15 @@
 
 This repository contains an automated CI/CD pipeline for a Multi-Tier Web Application application. The pipeline leverages Jenkins, Docker, Kubernetes, and ArgoCD to automate the build, test, security scan, and deployment process from code commit to production.
 
+![Workflow]([https://github.com/user-attachments/assets/6b3e9b6b-dd67-42c7-a7c5-311f9e4e774a](https://github.com/SeifHesham2/Multi-Tier-Web-Application/blob/088adc9a0329dbc0563a87b35ffa51c8b42ea714/Photos/Workflow.jpg))
 
 ## Key Features:
 
 ### Jenkins Pipeline Automation:
 - **SCM Polling:** Jenkins automatically polls the source code repository on GitHub for changes. This ensures that the pipeline runs automatically on every code commit.
 - The pipeline includes stages for checking out the code, building the application, performing static code analysis, security scans, and deploying to a Kubernetes cluster managed by Minikube.
+  
+![Workflow](https://github.com/user-attachments/assets/6b3e9b6b-dd67-42c7-a7c5-311f9e4e774a)
 
 ### Docker Integration:
 - The application is packaged as a Docker image, ensuring consistency across development, testing, and production environments.
@@ -19,9 +22,14 @@ This repository contains an automated CI/CD pipeline for a Multi-Tier Web Applic
 ### OWASP Dependency Check:
 - The pipeline integrates **OWASP Dependency Check** to scan the application’s dependencies for known vulnerabilities.
 
+  ![Workflow](https://github.com/user-attachments/assets/6b3e9b6b-dd67-42c7-a7c5-311f9e4e774a)
+
 ### SonarQube Code Analysis:
 - The pipeline integrates **SonarQube** for static code analysis, ensuring the code meets quality standards before deployment.
 - SonarQube identifies potential bugs, code smells, and security vulnerabilities, with detailed reports available directly within Jenkins.
+
+  ![Workflow](https://github.com/user-attachments/assets/6b3e9b6b-dd67-42c7-a7c5-311f9e4e774a)
+
 
 ### Kubernetes Deployment:
 - The Docker image is deployed to a **Kubernetes cluster** using **Minikube**.
@@ -30,6 +38,8 @@ This repository contains an automated CI/CD pipeline for a Multi-Tier Web Applic
 ### ArgoCD Continuous Deployment:
 - **ArgoCD** is used for continuous deployment and synchronization of the Kubernetes manifests with the live cluster.
 - ArgoCD automatically syncs the Kubernetes state in Minikube with the latest changes from the GitHub repository.
+  
+![Workflow](https://github.com/user-attachments/assets/6b3e9b6b-dd67-42c7-a7c5-311f9e4e774a)
 
 ### Environment Setup and Verification:
 - The pipeline starts with verifying the environment setup, including Docker and Minikube, to ensure that all necessary tools are in place.
