@@ -28,7 +28,7 @@ This repository contains an automated CI/CD pipeline for a Multi-Tier Web Applic
 - The pipeline integrates **SonarQube** for static code analysis, ensuring the code meets quality standards before deployment.
 - SonarQube identifies potential bugs, code smells, and security vulnerabilities, with detailed reports available directly within Jenkins.
 
-  ![Workflow](https://github.com/user-attachments/assets/6b3e9b6b-dd67-42c7-a7c5-311f9e4e774a)
+ ![Second Screenshot](Photos/Screenshot%202024-08-13%20041257.png)
 
 
 ### Kubernetes Deployment:
