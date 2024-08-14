@@ -73,9 +73,9 @@ This repository contains an automated CI/CD pipeline for a Multi-Tier Web Applic
 
 ## How to Run Locally Using MiniKube And ArgoCD:
 
-1. **Prerequisites:*ArgoCD and minikube installed in your computer* 
-2. **Clone the Repository:** `git clone https://github.com/yourusername/your-repo.git`
-3. **Start the Application:** Run `ArgoCD.yaml File`.
+1. **Prerequisites:** `ArgoCD and minikube installed in your computer` 
+3. **Clone the Repository:** `git clone https://github.com/yourusername/your-repo.git`
+4. **Start the Application:** Run `ArgoCD.yaml File`.
 5. **Access the Application:** Open your browser and go to `http://localhost:3000`.
 
 ## How to Deploy Using Jenkins:
