@@ -5,7 +5,7 @@ This repository contains an automated CI/CD pipeline for a Multi-Tier Web Applic
 ![Workflow](Photos/Workflow.jpg) 
 
 ## Website
-
+![Workflow](Photos/App)
 
 ## Mongo Express
 ![Workflow](Photos/Mongo)
