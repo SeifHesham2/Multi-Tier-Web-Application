@@ -2,7 +2,7 @@
 
 This repository contains an automated CI/CD pipeline for a Multi-Tier Web Application. The pipeline leverages Jenkins, Docker, Kubernetes, and ArgoCD to automate the build, test, security scan, and deployment process from code commit to production.
 
-![Workflow](Photos/Workflow.jpg)
+![Workflow](Photos/Workflow.jpg)  ![Workflow](Photos/App)  
 
 ## Key Features:
 
