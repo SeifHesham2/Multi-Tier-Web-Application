@@ -1,6 +1,6 @@
 # Multi-Tier Web Application CI/CD Pipeline with Jenkins, Docker, Kubernetes, and ArgoCD
 
-This repository contains an automated CI/CD pipeline for a Multi-Tier Web Application application. The pipeline leverages Jenkins, Docker, Kubernetes, and ArgoCD to automate the build, test, security scan, and deployment process from code commit to production.
+This repository contains an automated CI/CD pipeline for a Multi-Tier Web Application. The pipeline leverages Jenkins, Docker, Kubernetes, and ArgoCD to automate the build, test, security scan, and deployment process from code commit to production.
 
 ![Workflow](Photos/Workflow.jpg)
 
@@ -30,10 +30,13 @@ This repository contains an automated CI/CD pipeline for a Multi-Tier Web Applic
 
  ![Second Screenshot](Photos/Screenshot%202024-08-13%20041257.png)
 
-
 ### Kubernetes Deployment:
 - The Docker image is deployed to a **Kubernetes cluster** using **Minikube**.
 - The pipeline includes steps to update Kubernetes manifests with the new Docker image tag, apply the configurations, and verify the deployment.
+
+### MongoDB and Mongo Express Deployment:
+- **MongoDB Deployment:** A Kubernetes Deployment is configured for MongoDB, including a Service to expose MongoDB to other services and a Secret to store MongoDB credentials securely.
+- **Mongo Express Deployment:** A Kubernetes Deployment is set up for Mongo Express, which provides a web-based interface for MongoDB. A Service exposes Mongo Express within the cluster, and it uses the MongoDB credentials stored in the Kubernetes Secret.
 
 ### ArgoCD Continuous Deployment:
 - **ArgoCD** is used for continuous deployment and synchronization of the Kubernetes manifests with the live cluster.
@@ -71,12 +74,12 @@ This repository contains an automated CI/CD pipeline for a Multi-Tier Web Applic
 - **Trivy:** Scans Docker images for security vulnerabilities.
 - **OWASP Dependency Check:** Scans application dependencies for known vulnerabilities.
 
-## How to Run Locally Using MiniKube And ArgoCD:
+## How to Run Locally Using Minikube And ArgoCD:
 
-1. **Prerequisites:** `ArgoCD and minikube installed in your computer` 
-3. **Clone the Repository:** `git clone https://github.com/yourusername/your-repo.git`
-4. **Start the Application:** Run `ArgoCD.yaml File`.
-5. **Access the Application:** Open your browser and go to `http://localhost:3000`.
+1. **Prerequisites:** `ArgoCD and Minikube installed on your computer`
+2. **Clone the Repository:** `git clone https://github.com/yourusername/your-repo.git`
+3. **Start the Application:** Run `ArgoCD.yaml File`.
+4. **Access the Application:** Open your browser and go to `http://localhost:3000`.
 
 ## How to Deploy Using Jenkins:
 
